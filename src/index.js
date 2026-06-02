@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
 const codeRoutes = require("./routes/codeRoutes.js");
+const authRoutes = require("./routes/authRoutes.js"); // 1. CORREGIDO: Ahora apunta correctamente dentro de routes
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json()); // Permite que el servidor entienda datos en formato JS
 
 // 3. Definición de Rutas de la API
 app.use("/api/codes", codeRoutes);
+app.use("/api/auth", authRoutes); // 2. CORREGIDO: Usamos 'app.use' y lo asignamos a '/api/auth'
 
 // Ruta de prueba inicial para saber que el backend responde en el navegador
 app.get("/", (req, res) => {
@@ -22,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 // 4. Encender el Servidor
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000; // Ajustado a 3000 o el que uses en tu .env para que coincida con tu front
 app.listen(PORT, () => {
   console.log(`=== Servidor corriendo en el puerto ${PORT} ===`);
 });
