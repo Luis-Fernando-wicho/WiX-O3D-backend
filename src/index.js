@@ -3,7 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db.js");
 const codeRoutes = require("./routes/codeRoutes.js");
-const authRoutes = require("./routes/authRoutes.js"); // 1. CORREGIDO: Ahora apunta correctamente dentro de routes
+const authRoutes = require("./routes/authRoutes.js");
+const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.use(express.json()); // Permite que el servidor entienda datos en formato JS
 
 // 3. Definición de Rutas de la API
 app.use("/api/codes", codeRoutes);
-app.use("/api/auth", authRoutes); // 2. CORREGIDO: Usamos 'app.use' y lo asignamos a '/api/auth'
+app.use("/api/auth", authRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Ruta de prueba inicial para saber que el backend responde en el navegador
 app.get("/", (req, res) => {
